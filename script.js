@@ -170,16 +170,16 @@ async function loadQuestion() {
     
     let question = null;
     
-    if (OPENROUTER_API_KEY) {
-        try {
-            question = await generateDynamicQuestion();
-        } catch (error) {
-            console.error('Error generating dynamic question:', error);
-        }
+    try {
+        question = await generateDynamicQuestion();
+    } catch (error) {
+        console.error('Error generating dynamic question:', error);
     }
     
+    // Removed fallback to static question. If question generation fails, log an error.
     if (!question) {
-        question = getStaticQuestion();
+        console.error('Dynamic question generation failed.');
+        return;
     }
     
     gameState.update({ question });
@@ -228,6 +228,8 @@ function startTimer() {
         if (gameUI.updateTimerBar) {
             gameUI.updateTimerBar(percentage);
         }
+        // Play tick sound each second
+        SOUNDS.tick.play();
         if (gameState.current.timeLeft <= 0) {
             clearInterval(gameState.current.timerInterval);
             // If time runs out, consider it as an incorrect answer (or call a timeout handler if available)
@@ -244,6 +246,8 @@ async function handleAnswer(selectedIndex) {
     const answerTime = TIMER_DURATION - gameState.current.timeLeft;
     
     if (isCorrect) {
+        // Add green effect to the clicked button
+        gameUI.elements.optionBtns[selectedIndex].classList.add('correct');
         SOUNDS.correct.play();
         await animationSystem.correctAnswerAnimation(gameUI.elements.optionBtns[selectedIndex]);
         if (answerTime <= 5) {
