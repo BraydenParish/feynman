@@ -1,0 +1,256 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+    color: #777;
+}
+
+/* Screen Styles */
+.screen {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Start Screen */
+#start-screen {
+    text-align: center;
+}
+
+#start-screen h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+#start-screen p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Quiz Screen */
+.timer-container {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#timer-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #3498db;
+    transition: width 0.1s linear;
+}
+
+.question-container {
+    margin-bottom: 25px;
+}
+
+#question-text {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.option-btn {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.option-btn.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.option-btn.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.option-btn.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+#feedback {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#feedback-text {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#feedback-text.correct {
+    color: #28a745;
+}
+
+#feedback-text.incorrect {
+    color: #dc3545;
+}
+
+#hint-container {
+    background-color: #e8f4fd;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+#hint-text {
+    color: #0c63e4;
+    font-style: italic;
+}
+
+/* Results Screen */
+#results-screen {
+    text-align: center;
+}
+
+#results-screen h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.results-container {
+    margin-bottom: 25px;
+}
+
+#final-score {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+#performance-summary {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .screen {
+        padding: 20px;
+    }
+} 

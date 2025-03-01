@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>History Quiz Challenge</h1>
+            <div class="game-info">
+                <div class="score-container">
+                    <span>Score: </span>
+                    <span id="score">0</span>
+                </div>
+                <div class="difficulty-container">
+                    <span>Difficulty: </span>
+                    <span id="difficulty">Easy</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="start-screen" class="screen">
+                <h2>Test Your History Knowledge!</h2>
+                <p>Answer 10 questions about history. The difficulty will adapt based on your performance.</p>
+                <p>You have 10 seconds to answer each question.</p>
+                <button id="start-btn" class="btn">Start Quiz</button>
+            </div>
+
+            <div id="quiz-screen" class="screen hidden">
+                <div class="timer-container">
+                    <div id="timer-bar"></div>
+                </div>
+                <div class="question-container">
+                    <h2 id="question-text">Question goes here</h2>
+                </div>
+                <div class="options-container">
+                    <button class="option-btn" data-index="0"></button>
+                    <button class="option-btn" data-index="1"></button>
+                    <button class="option-btn" data-index="2"></button>
+                    <button class="option-btn" data-index="3"></button>
+                </div>
+                <div id="feedback" class="hidden">
+                    <p id="feedback-text"></p>
+                    <div id="hint-container" class="hidden">
+                        <p id="hint-text"></p>
+                    </div>
+                    <button id="next-btn" class="btn">Next Question</button>
+                </div>
+            </div>
+
+            <div id="results-screen" class="screen hidden">
+                <h2>Quiz Complete!</h2>
+                <div class="results-container">
+                    <p>Your final score: <span id="final-score">0</span> out of 100</p>
+                    <div id="performance-summary"></div>
+                </div>
+                <button id="restart-btn" class="btn">Play Again</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>History Quiz Game &copy; 2024</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
