@@ -9,11 +9,30 @@ const CONSECUTIVE_WRONG_TO_DOWNGRADE = 2;
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const OPENROUTER_API_KEY = ''; // Add your API key here
 
+// Sound Effects
+const SOUNDS = {
+    correct: new Audio('https://assets.mixkit.co/active_storage/sfx/2577/2577-preview.mp3'),
+    wrong: new Audio('https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3'),
+    tick: new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'),
+    levelUp: new Audio('https://assets.mixkit.co/active_storage/sfx/2588/2588-preview.mp3'),
+    streak: new Audio('https://assets.mixkit.co/active_storage/sfx/2563/2563-preview.mp3'),
+    countdown: new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3')
+};
+
+// Preload sounds
+Object.values(SOUNDS).forEach(sound => {
+    sound.load();
+    sound.volume = 0.5; // Set default volume
+});
+
 // Game State
 const gameState = {
     currentQuestion: null,
     currentQuestionIndex: 0,
     score: 0,
+    xp: 0,
+    level: 1,
+    streak: 0,
     difficulty: 'easy', // 'easy', 'medium', 'hard'
     consecutiveCorrect: 0,
     consecutiveWrong: 0,
@@ -24,8 +43,19 @@ const gameState = {
         easy: { correct: 0, total: 0 },
         medium: { correct: 0, total: 0 },
         hard: { correct: 0, total: 0 }
+    },
+    powerUps: {
+        timeFreeze: 0,
+        doubleXp: 0,
+        skipQuestion: 0
     }
 };
+
+// XP Constants
+const XP_PER_CORRECT = 50;
+const XP_PER_LEVEL = 500;
+const STREAK_BONUS_THRESHOLD = 3;
+const STREAK_BONUS_MULTIPLIER = 1.1; // 10% bonus
 
 // DOM Elements
 const startScreen = document.getElementById('start-screen');
