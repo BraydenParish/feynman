@@ -518,6 +518,7 @@ function validateQuestionFormat(question) {
 
 // Game Flow Functions
 async function startGame() {
+    console.log('startGame triggered');
     gameState.reset();
     gameUI.showScreen('countdownScreen');
     await startCountdown();
@@ -583,6 +584,26 @@ function getStaticQuestion() {
     
     // Return a random question from available ones
     return availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+}
+
+function startTimer() {
+    gameState.current.timeLeft = TIMER_DURATION;
+    // Initialize the timer bar to 100%
+    if (gameUI.updateTimerBar) {
+        gameUI.updateTimerBar(100);
+    }
+    gameState.current.timerInterval = setInterval(() => {
+        gameState.current.timeLeft--;
+        let percentage = (gameState.current.timeLeft / TIMER_DURATION) * 100;
+        if (gameUI.updateTimerBar) {
+            gameUI.updateTimerBar(percentage);
+        }
+        if (gameState.current.timeLeft <= 0) {
+            clearInterval(gameState.current.timerInterval);
+            // If time runs out, consider it as an incorrect answer (or call a timeout handler if available)
+            handleAnswer(-1);
+        }
+    }, 1000);
 }
 
 async function handleAnswer(selectedIndex) {
@@ -795,4 +816,4 @@ function init() {
 }
 
 // Start the game initialization
-init(); 
+document.addEventListener('DOMContentLoaded', init); 

@@ -42,7 +42,7 @@ export class GameUI {
     }
     
     setupEventListeners(handlers) {
-        document.getElementById('start-btn').addEventListener('click', handlers.startGame);
+        document.getElementById('start-btn').addEventListener('click', () => { console.log('start-btn clicked'); handlers.startGame(); });
         document.getElementById('next-btn').addEventListener('click', handlers.loadNextQuestion);
         document.getElementById('restart-btn').addEventListener('click', handlers.restartGame);
         document.getElementById('level-up-close').addEventListener('click', () => this.hideLevelUpModal());
