@@ -17,7 +17,7 @@ const STREAK_BONUS_MULTIPLIER = 1.1; // 10% bonus
 
 // API Configuration
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const OPENROUTER_API_KEY = ''; // Add your API key here
+const OPENROUTER_API_KEY = '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';
 
 // Sound Effects
 const SOUNDS = {
@@ -34,6 +34,19 @@ Object.values(SOUNDS).forEach(sound => {
     sound.load();
     sound.volume = 0.5;
 });
+
+// Static Questions
+const easyQuestions = [
+    { text: "Who was the first President of the United States?", options: ["George Washington", "John Adams", "Thomas Jefferson", "Abraham Lincoln"], correctAnswer: 0, difficulty: "easy" }
+];
+
+const mediumQuestions = [
+    { text: "In which year did World War II end?", options: ["1942", "1945", "1939", "1950"], correctAnswer: 1, difficulty: "medium" }
+];
+
+const hardQuestions = [
+    { text: "Which battle is considered the turning point of the Eastern Front in WWII?", options: ["Stalingrad", "Normandy", "Midway", "El Alamein"], correctAnswer: 0, difficulty: "hard" }
+];
 
 // Utility Functions
 function debounce(func, wait) {
