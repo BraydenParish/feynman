@@ -176,7 +176,6 @@ async function loadQuestion() {
         console.error('Error generating dynamic question:', error);
     }
     
-    // Removed fallback to static question. If question generation fails, log an error.
     if (!question) {
         console.error('Dynamic question generation failed.');
         return;
