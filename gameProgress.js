@@ -1,3 +1,6 @@
+// At the top of the file, after the comment
+const TOTAL_QUESTIONS = 10;
+
 // Game Progress Management
 export class GameProgress {
     constructor() {

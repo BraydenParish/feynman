@@ -130,7 +130,7 @@ async function generateDynamicQuestion() {
 
 function validateQuestionFormat(question) {
     const required = ['text', 'options', 'correctAnswer', 'difficulty'];
-    const missing = required.filter(field => !question[field]);
+    const missing = required.filter(field => question[field] === undefined);
     if (missing.length > 0) {
         throw new Error(`Invalid question format. Missing: ${missing.join(', ')}`);
     }
